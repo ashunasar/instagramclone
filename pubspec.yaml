@@ -28,7 +28,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  font_awesome_flutter: ^8.11.0
+  # font_awesome_flutter: ^8.11.0
+  animated_bottom_navigation_bar: ^0.2.1
+  material_design_icons_flutter: ^4.0.5755
+  google_fonts: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -67,11 +70,14 @@ flutter:
           style: normal
     #     - asset: fonts/Schyler-Italic.ttf
     #       style: italic
-    # - family: Trajan Pro
+    # - family: CustomIcon
     #   fonts:
-    #     - asset: fonts/TrajanPro.ttf
-    #     - asset: fonts/TrajanPro_Bold.ttf
-    #       weight: 700
+    #     - asset: assets/fonts/CustomIcons.ttf
+    #        fonts:
+    - family:  CustomIcons
+      fonts:
+       - asset: assets/fonts/CustomIcons.ttf
+         style: normal
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
