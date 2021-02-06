@@ -1,5 +1,3 @@
-import 'package:instagram_clone/screens/chat_page.dart';
-import 'package:instagram_clone/screens/insta_profile.dart';
 import 'package:instagram_clone/screens/profile_page.dart';
 import 'package:instagram_clone/widgets/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';

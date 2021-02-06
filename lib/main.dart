@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:instagram_clone/screens/chat_page_new.dart';
+import 'package:instagram_clone/screens/chat_page_new1.dart';
 import 'package:instagram_clone/screens/insta_home.dart';
 
 void main() {
@@ -17,6 +19,7 @@ void main() {
 class MyApp extends StatelessWidget {
   PageController controller = PageController();
   var currentPageValue = 0.0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,31 +59,7 @@ class MyApp extends StatelessWidget {
           // )
           // ProfilePage(),
           // ChatPage(),
-          Scaffold(
-            backgroundColor: Color(0xffe9edf3),
-            appBar: AppBar(
-              leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
-                  onPressed: () {
-                    print("Hello");
-                    print(controller.page);
-                    // use this to animate to the page
-                    controller.animateToPage(0,
-                        duration: Duration(milliseconds: 400),
-                        curve: Curves.easeIn);
-
-                    // controller.
-                  }),
-              backgroundColor: Color(0xffe9edf3),
-              elevation: 0,
-              title: Text(
-                'Ashu Nasar',
-                style: GoogleFonts.hindSiliguri(
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          )
+          ChatAppNew1(),
         ],
       ),
     );

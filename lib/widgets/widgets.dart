@@ -54,7 +54,7 @@ class InstaList extends StatelessWidget {
                             ),
                             SizedBox(width: 10),
                             Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   posts[i].profileName,
