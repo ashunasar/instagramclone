@@ -2,10 +2,11 @@ import 'dart:ui';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:instagram_clone/modals/story_modal.dart';
 import 'package:instagram_clone/screens/insta_home.dart';
-import 'package:instagram_clone/widgets/widgets.dart';
+
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:peek_and_pop_dialog/peek_and_pop_dialog.dart';
 
@@ -23,15 +24,65 @@ class _ProfilePageState extends State<ProfilePage> {
   ];
 
   var _bottomNavIndex = 3;
+  ScrollController _scrollController =
+  new ScrollController();
+  @override
+  void initState() {
+    super.initState();
+    handleScroll();
+  }
 
   @override
+  void dispose() {
+    _scrollController.removeListener(() {});
+    super.dispose();
+  }
+  bool _show = false;
+  void showButton() {
+    setState(() {
+      _show = true;
+    });
+  }
+
+  void hideButton() {
+    setState(() {
+      _show = false;
+    });
+  }
+
+  void handleScroll()  {
+    _scrollController.addListener(() {
+      // if (_scrollController.position.userScrollDirection ==
+      //     ScrollDirection.reverse) {
+      //   showButton();
+      //   print(_scrollController.position.pixels);
+      //   // if(_scrollController.position.hasPixels){}
+      //   // print("reverse");
+      // }
+      // if (_scrollController.position.userScrollDirection ==
+      //     ScrollDirection.forward) {
+      //
+      //   hideButton();
+      //   // print("forward");
+      // }
+      //print(_scrollController.position.pixels);
+      if(_scrollController.position.pixels >=276){
+        showButton();
+      }else{
+        hideButton();
+      }
+
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
+  //  var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Color(0xffe9edf3),
       appBar: AppBar(
         backgroundColor: Color(0xffe9edf3),
+        centerTitle: false,
         elevation: 0,
         title: Text(
           'Ashu Nasar',
@@ -39,11 +90,17 @@ class _ProfilePageState extends State<ProfilePage> {
             fontWeight: FontWeight.w500,
           ),
         ),
+        actions: [Visibility(
+            visible: _show,
+            child: RaisedButton(color: Color(0xffe9edf3),
+                child: Text("Follow",style:TextStyle(color: Colors.blueAccent)), onPressed: () {}))],
       ),
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           children: [
+
             SizedBox(height: 20),
             Row(
               children: [
@@ -54,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   // color: Colors.red,
                   child: CircleAvatar(
                     backgroundImage:
-                        AssetImage('assets/images/storyPic (10).jpg'),
+                    AssetImage('assets/images/storyPic (10).jpg'),
                   ),
                 ),
                 SizedBox(
@@ -310,7 +367,7 @@ class _ProfilePageState extends State<ProfilePage> {
             // iconList[0] = Icons.add;
             switch (_bottomNavIndex) {
               case 0:
-                // iconList[0] = MdiIcons.homeVariant;
+              // iconList[0] = MdiIcons.homeVariant;
 
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => InstaHome()));
@@ -322,7 +379,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ];
                 break;
               case 2:
-                // iconList[2] = MdiIcons.heart;
+              // iconList[2] = MdiIcons.heart;
                 iconList = [
                   MdiIcons.homeVariantOutline,
                   MdiIcons.magnify,
@@ -331,7 +388,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ];
                 break;
               case 3:
-                // iconList[3] = MdiIcons.account;
+              // iconList[3] = MdiIcons.account;
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => ProfilePage()));
                 iconList = [
@@ -373,7 +430,7 @@ class ProfileDialogBuild extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               image:
-                  DecorationImage(image: AssetImage(imgUrl), fit: BoxFit.cover),
+              DecorationImage(image: AssetImage(imgUrl), fit: BoxFit.cover),
             ),
           ),
         ),
@@ -384,7 +441,7 @@ class ProfileDialogBuild extends StatelessWidget {
             // color: Colors.red,
             borderRadius: BorderRadius.circular(15),
             image:
-                DecorationImage(image: AssetImage(imgUrl), fit: BoxFit.cover),
+            DecorationImage(image: AssetImage(imgUrl), fit: BoxFit.cover),
           ),
         ));
   }

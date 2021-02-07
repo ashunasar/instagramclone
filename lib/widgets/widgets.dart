@@ -30,7 +30,7 @@ class InstaList extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, i) => i == 0
           ? SizedBox(
-              height: height * 0.17,
+              height: height * 0.13,
               child: InstaStories(),
             )
           : Container(
@@ -175,48 +175,51 @@ class InstaStories extends StatelessWidget {
   //   ],
   // );
 
-  final stories = Expanded(
-    child: Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, i) => Stack(
-          children: [
-            Container(
-              height: 60,
-              width: 60,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(storyData[i].imgUrl),
-                ),
-              ),
-              margin: EdgeInsets.symmetric(horizontal: 8.0),
-            ),
-            i == 0
-                ? Positioned(
-                    bottom: 35,
-                    right: 10,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      radius: 10,
-                      child: Icon(
-                        Icons.add,
-                        size: 14,
-                        color: Colors.white,
-                      ),
-                    ))
-                : Container(),
-          ],
-        ),
-        itemCount: storyData.length,
-      ),
-    ),
-  );
+  // final stories = Expanded(
+  //   child: Padding(
+  //     padding: const EdgeInsets.only(top: 8.0),
+  //     child: ListView.builder(
+  //       scrollDirection: Axis.horizontal,
+  //       itemBuilder: (context, i) => Stack(
+  //         children: [
+  //           Container(
+  //             height: 60,
+  //             width: 60,
+  //             decoration: BoxDecoration(
+  //               shape: BoxShape.circle,
+  //               image: DecorationImage(
+  //                 fit: BoxFit.cover,
+  //                 image: AssetImage(storyData[i].imgUrl),
+  //               ),
+  //             ),
+  //             margin: EdgeInsets.symmetric(horizontal: 8.0),
+  //           ),
+  //           i == 0
+  //               ? Positioned(
+  //                   bottom: 35,
+  //                   right: 10,
+  //                   child: CircleAvatar(
+  //                     backgroundColor: Colors.blue,
+  //                     radius: 10,
+  //                     child: Icon(
+  //                       Icons.add,
+  //                       size: 14,
+  //                       color: Colors.white,
+  //                     ),
+  //                   ))
+  //               : Container(),
+  //         ],
+  //       ),
+  //       itemCount: storyData.length,
+  //     ),
+  //   ),
+  // );
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
       margin: EdgeInsets.only(top: 16),
       child: Column(
@@ -225,7 +228,45 @@ class InstaStories extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           // topText,
-          stories,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, i) => Stack(
+                  children: [
+                    Container(
+                      height: 60,
+                      width: 60,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(storyData[i].imgUrl),
+                        ),
+                      ),
+                      margin: EdgeInsets.symmetric(horizontal: 8.0),
+                    ),
+                    i == 0
+                        ? Positioned(
+                        bottom: height/25,
+                        right: width/40,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.blue,
+                          radius: 10,
+                          child: Icon(
+                            Icons.add,
+                            size: 14,
+                            color: Colors.white,
+                          ),
+                        ))
+                        : Container(),
+                  ],
+                ),
+                itemCount: storyData.length,
+              ),
+            ),
+          ),
           // Divider(
           //   height: 2,
           //   thickness: 1.5,
